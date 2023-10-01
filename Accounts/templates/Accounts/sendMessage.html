@@ -1,0 +1,25 @@
+{% extends 'YokoCino/inicio.html' %}
+{% load static %}
+{% block title %}
+    YokoCino | Enviar mensaje
+{% endblock title %}
+{% block main_title %}
+    <h1>Enviar</h1>
+{% endblock main_title %}
+{% block busqueda %}
+{% endblock busqueda %}
+{% block main_content %}
+    <h2>Enviar mensaje</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_recipient">Destinatario:</label>
+            {{ form.recipient }}
+        </div>
+        <div class="form-group">
+            <label for="id_content">Contenido:</label>
+            {{ form.content }}
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock main_content %}

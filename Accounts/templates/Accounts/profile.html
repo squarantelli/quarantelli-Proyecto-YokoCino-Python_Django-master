@@ -1,0 +1,27 @@
+{% extends 'YokoCino/inicio.html' %}
+{% load static %}
+{% block title %}
+    YokoCino | Profile
+{% endblock title %}
+{% block main_title %}
+    <h1>Profile</h1>
+{% endblock main_title %}
+{% block busqueda %}
+{% endblock busqueda %}
+{% block main_content %}
+            <h2>Perfil</h2>
+            <h3>De {{usuario.username}}</h3>
+            {% if avatar_url %}
+            <img src="{{ avatar_url }}" width="100px" alt="Avatar">
+            {% endif %}
+            <div>
+                <ul>
+                    <li>Username: {{usuario.username}}</li>
+                    <li>Email: {{usuario.email}}</li>
+                    <li>Nombre: {{usuario.first_name}}</li>
+                    <li>Apellido: {{usuario.last_name}}</li>
+                </ul>
+                <a href="/Accounts/profileEdit" class="btn btn-success" style="text-decoration: none; color: white;"> Editar Perfil</a>
+                <a href="/Accounts/addAvatar" class="btn btn-success" style="text-decoration: none; color: white;"> Avatar</a>
+            </div>
+{% endblock main_content %}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}YokoCino | Inicio{% endblock title %}</title>
+        <link rel="icon" type="image/x-icon" href="" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS -->
+        <link href="{% static 'Yokocino/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'Yokocino/css/overwrite.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Yoko Cino</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Inicio' %}">Home</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+                                <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'Carnes' %}">Carnes</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Guisos' %}">Guisos</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Ensaladas' %}">Ensaladas</a></li>
+                                </ul>
+                            </li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'About' %}">About</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="nuevoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nuevo</a>
+                            <ul class="dropdown-menu" aria-labelledby="nuevoDropdown">
+                                <li><a class="dropdown-item" href="{% url 'setPost' %}">Nuevo Post</a></li>
+                                <li><a class="dropdown-item" href="{% url 'setAutor' %}">Nuevo Autor</a></li>
+                                <li><a class="dropdown-item" href="{% url 'setCategoria' %}">Nueva Categoria</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/Accounts/profile/">Perfil</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="mensajesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mensajeria</a>
+                                    <ul class="dropdown-menu" aria-labelledby="mensajesDropdown">
+                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/Accounts/inbox/">Bandeja de entrada</a></li>
+                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/Accounts/sendMessage/">Enviar mensaje</a></li>
+                                    </ul>
+                                </li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/Accounts/logout/">Cerrar sesión</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/Accounts/login/">Iniciar sesión</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/Accounts/register/">Registrarse</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% block back_img %}{% static 'Yokocino/assets/home-bg-fin.jpg' %}{% endblock back_img %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>{% block main_title %}YokoCino{% endblock main_title %}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% block busqueda %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 search">
+            <form class="" action="{% url 'Inicio' %}" method="get">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control" placeholder="Buscar" name="buscar">
+                        <span class="input-group-list">
+                            <i class="icon icon-search"></i>
+                            <button type="submit" class="boton btn-primary">Buscar</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock busqueda %}
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                {% block main_content %}
+                    <!-- Post preview-->
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="post-preview">
+                                <a href="{% url 'detalle_post' post.slug %}">
+                                    <h2 class="post-title">{{ post.titulo }}</h2>
+                                    <h3 class="post-subtitle">{{ post.descripcion }}</h3>
+                                </a>
+                                <p class="post-meta">
+                                    Creado por
+                                    <strong>{{ post.autor }}</strong>
+                                    el {{ post.fecha_creacion }}
+                                </p>
+                                {% if staff_group in user.groups.all or user.is.superuser%}
+                                    <a href="{% url 'editar_post' post.slug %}" class="btn btn-primary">Editar post</a>
+                                {% endif %}
+                            </div>
+                            <hr class="my-4" />
+                        {% endfor %}
+                    {% else %}
+                        <h1>No hay post registrados</h1>
+                    {% endif %}
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Pager-->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 float-left">
+                                {% if posts.has_previous %}
+                                    <div class="clearfix">
+                                        <a href="?page={{ posts.previous_page_number }}
+                                        {% if request.GET.search %}
+                                        &q={{ request.GET.search }}
+                                        {% endif %}
+                                        " class="btn btn-primary float-left">Anterior</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 float-right">
+                                {% if posts.has_next %}
+                                    <div class="clearfix">
+                                        <a href="?page={{ posts.next_page_number }}" class="btn btn-primary float-left">Siguiente</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endblock main_content %}
+            </div>
+        </div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Quarantelli para CoderHouse Python #54485 - 2023</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

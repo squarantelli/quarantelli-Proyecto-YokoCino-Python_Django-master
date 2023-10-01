@@ -1,0 +1,44 @@
+{% extends 'YokoCino/inicio.html' %}
+{% load static %}
+
+{% block title %}
+    YokoCino | Editar Post
+{% endblock title %}
+
+{% block back_img %}
+{% static 'Yokocino/assets/new-bg.jpg' %}
+{% endblock back_img %}
+
+{% block main_title %}
+    <h1>Editar Post: {{post.titulo}}</h1>
+{% endblock main_title %}
+
+{% block busqueda %}
+{% endblock busqueda %}
+
+{% block main_content %}
+    <p>Editar publicación</p>
+    <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+        <table>
+            {% for field in miFormulario %}
+                {% if field.name != 'imagen' %}
+                    <tr>
+                        <td>{{ field.label_tag }}</td>
+                        <td>{{ field }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            {% if miFormulario.instance.imagen %}
+                <tr>
+                    <td>Imagen actual:</td>
+                    <td><img src="{{ miFormulario.instance.imagen.url }}" alt="Imagen actual"></td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>Cambiar imagen:</td>
+                <td>{{ miFormulario.imagen }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="Guardar cambios">
+    </form>
+{% endblock main_content %}

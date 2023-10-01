@@ -1,0 +1,23 @@
+{% extends 'YokoCino/inicio.html' %}
+{% load static %}
+{% block title %}
+    YokoCino | Profile Edit
+{% endblock title %}
+{% block main_title %}
+    <h1>Editar Perfil</h1>
+{% endblock main_title %}
+{% block busqueda %}
+{% endblock busqueda %}
+{% block main_content %}
+            <h2>Formulario - Editar Perfil</h2>
+            <h3>De {{usuario}}</h3>
+            {% if avatar_url %}
+            <img src="{{ avatar_url }}" width="100px" alt="Avatar">
+            {% endif %}
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                    {{ miFormulario.as_table }}
+                </table>
+                <input type="submit", value="Enviar">
+            </form>  
+{% endblock main_content %}

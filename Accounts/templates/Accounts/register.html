@@ -1,0 +1,17 @@
+{% extends 'YokoCino/inicio.html' %}
+{% load static %}
+{% block title %}
+    YokoCino | Register
+{% endblock title %}
+{% block main_title %}
+    <h1>Register</h1>
+{% endblock main_title %}
+{% block busqueda %}
+{% endblock busqueda %}
+{% block main_content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrate!</button>
+    </form>
+{% endblock main_content %}

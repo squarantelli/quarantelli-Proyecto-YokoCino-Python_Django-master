@@ -1,0 +1,26 @@
+{% extends 'YokoCino/inicio.html' %}
+{% load static %}
+{% block title %}
+    YokoCino | Inbox
+{% endblock title %}
+{% block main_title %}
+    <h1>Bandeja de entrada</h1>
+{% endblock main_title %}
+{% block busqueda %}
+{% endblock busqueda %}
+{% block main_content %}
+<h2>Bandeja de entrada</h2>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>
+                <strong>Remitente:</strong> {{ message.sender.username }}<br>
+                <strong>Fecha y hora:</strong> {{ message.timestamp }}<br>
+                <strong>Contenido:</strong> {{ message.content }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay mensajes en la bandeja de entrada.</p>
+    {% endif %}
+{% endblock main_content %}
